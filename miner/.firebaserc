@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "pminer-d6ee3": {
+      "hosting": {
+        "miner": [
+          "pminer-d6ee3"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "pminer-d6ee3"
+  }
+}

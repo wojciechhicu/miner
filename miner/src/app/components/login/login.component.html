@@ -1,0 +1,54 @@
+<!-- particles.js container -->
+<div id="particles-js"></div>
+
+<div class="container">
+
+  <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="hgroup">
+        <h1>pMiner</h1>
+        <h3>By Wojciech Marek</h3>
+      </div>
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        placeholder="Email"
+        value="Sushi"
+        formControlName="email"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <input
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        formControlName="password"
+        required
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
+    <button
+      class="full-width"
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="form.invalid"
+    >
+      Log in with email
+    </button>
+    <button class="full-width top-margin" type="submit" mat-raised-button color="primary">
+      Log in with Google
+    </button>
+    <img class="logo" src="../../../assets/logo_5.png" alt="">
+  </form>
+</div>
