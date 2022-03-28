@@ -28,6 +28,7 @@
         required
       />
       <button
+      type="button"
         mat-icon-button
         matSuffix
         (click)="hide = !hide"
@@ -38,6 +39,7 @@
       </button>
     </mat-form-field>
     <button
+    type="button"
       class="full-width"
       type="submit"
       mat-raised-button
@@ -46,9 +48,10 @@
     >
       Log in with email
     </button>
-    <button class="full-width top-margin" type="submit" mat-raised-button color="primary">
-      Log in with Google
+    <button type="button" class="full-width top-margin" mat-raised-button color="primary" (click)="loginWithGoogle()">
+      Log in or register with Google
     </button>
     <img class="logo" src="../../../assets/logo_5.png" alt="">
   </form>
 </div>
+<!-- TODO change view-->

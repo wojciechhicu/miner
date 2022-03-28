@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Error while ligging in</h1>
+<div mat-dialog-content>
+  
+  <div class="" *ngIf="data.error == 'auth/id-token-expired'">ID token just expired. Please log in again</div>
+  <div class="" *ngIf="data.error == 'auth/invalid-email'">Invalid email or password</div>
+  <div class="" *ngIf="data.error == 'auth/invalid-id-token'">Invalid ID token. Please log in again.</div>
+  <div class="" *ngIf="data.error == 'auth/invalid-password'">Invalid email or password.</div>
+  <div class="" *ngIf="data.error == 'auth/session-cookie-expirer'">Coockie just expired log in again.</div>
+  <div class="" *ngIf="data.error == 'auth/user-not-found'">User not found.</div>
+  <div class="" *ngIf="data.error == 'auth/too-many-requests'">Too many requests, please try again later.</div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+</div>

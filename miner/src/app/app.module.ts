@@ -22,12 +22,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { ELoginCompHanderComponent } from './handlers/e-login-comp-hander/e-login-comp-hander.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    ELoginCompHanderComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +47,7 @@ import { MatButtonModule } from '@angular/material/button';
     FormsModule,
     MatInputModule,
     MatButtonModule,
+    MatDialogModule
   ],
   providers: [
     FirebaseService

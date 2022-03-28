@@ -1,9 +1,12 @@
-import { Component, OnInit,Output,EventEmitter } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FirebaseService } from '../../services/firebase.service';
 import { LoginData } from '../../interfaces/login-data.interface';
+import { DialogData } from '../../interfaces/eLogInHandler.interface';
 import { Router } from '@angular/router';
 import { FormGroup,FormBuilder,Validators  } from '@angular/forms';
 import { ParticlesConfig } from './particles-config';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ELoginCompHanderComponent } from '../../handlers/e-login-comp-hander/e-login-comp-hander.component';
 
 declare let particlesJS: any;
 
@@ -15,17 +18,14 @@ declare let particlesJS: any;
 export class LoginComponent implements OnInit {
   title = 'Log in - Miner';
   hide = true;
-  @Output() formData: EventEmitter<{
-    email: string;
-    password: string;
-  }> = new EventEmitter();
 
   form: FormGroup;
 
   constructor(
     private readonly authService: FirebaseService,
     private readonly router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -51,8 +51,25 @@ export class LoginComponent implements OnInit {
     this.authService
       .login(loginData)
       .then(() => this.router.navigate(['/dashboard']))
-      .catch((e) => console.log(e.message));
+      .catch((e) => this.openDialog(e.code));
   }
+  openDialog(error: DialogData) {
+    this.dialog.open(ELoginCompHanderComponent, {
+      data: {
+        error: error,
+      }
+    }
+  );
+};
+
+
+  loginWithGoogle() {
+    this.authService
+      .loginWithGoogle()
+      .then(() => this.router.navigate(['/dashboard']))
+      .catch((e) => console.log(e.message)); //TODO create popup window with error
+  }
+  
   public invokeParticles(): void {
     particlesJS('particles-js', ParticlesConfig, function() {});
   }
