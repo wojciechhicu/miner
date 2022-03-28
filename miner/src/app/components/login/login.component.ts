@@ -2,8 +2,9 @@ import { Component, OnInit,Output,EventEmitter } from '@angular/core';
 import { FirebaseService } from '../../services/firebase.service';
 import { LoginData } from '../../interfaces/login-data.interface';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup,FormBuilder,Validators  } from '@angular/forms';
+import { FormGroup,FormBuilder,Validators  } from '@angular/forms';
 import { ParticlesConfig } from './particles-config';
+
 declare let particlesJS: any;
 
 @Component({
@@ -43,8 +44,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.formData.emit(this.form.value);
-    console.log(this.form.value)
+   this.login(this.form.value);
   }
   
   login(loginData: LoginData) {

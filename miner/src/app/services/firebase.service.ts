@@ -9,7 +9,7 @@ export class FirebaseService {
   isLoggedIn = false;
   constructor(private firebaseAuth: Auth) {}
 
-  login({ email, password }: any) {
+  login({ email, password }: LoginData) {
     return signInWithEmailAndPassword(this.firebaseAuth, email, password);
   }
   register({ email, password }: LoginData) {

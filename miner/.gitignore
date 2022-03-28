@@ -6,6 +6,8 @@
 /e2e
 /tmp
 /out-tsc
+/miner-win32-x64
+/pMiner
 # Only exists if Bazel was run
 /bazel-out
 

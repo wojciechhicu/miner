@@ -10,7 +10,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "start:electron": "ng build --base-href ./ && electron .",
-    "startBuild": "npm run build -- -c production"
+    "startBuild": "npm run build -- -c production",
+    "create": "electron-packager . electron-tutorial-app --overwrite --platform=win32 --arch=x64 --prune=true --out=pMiner"
   },
   "private": true,
   "dependencies": {
@@ -25,7 +26,6 @@
     "@angular/platform-browser": "~13.3.0",
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
-    "electron-packager": "^15.4.0",
     "firebase": "^9.6.10",
     "particles.js": "^2.0.0",
     "rxjs": "~6.6.0",
@@ -40,6 +40,7 @@
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
     "electron": "^17.2.0",
+    "electron-packager": "^15.4.0",
     "jasmine-core": "~3.7.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "^6.3.17",
