@@ -8,6 +8,7 @@
 /out-tsc
 /miner-win32-x64
 /pMiner
+/src/environments
 # Only exists if Bazel was run
 /bazel-out
 

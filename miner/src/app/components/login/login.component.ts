@@ -5,7 +5,7 @@ import { DialogData } from '../../interfaces/eLogInHandler.interface';
 import { Router } from '@angular/router';
 import { FormGroup,FormBuilder,Validators  } from '@angular/forms';
 import { ParticlesConfig } from './particles-config';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { ELoginCompHanderComponent } from '../../handlers/e-login-comp-hander/e-login-comp-hander.component';
 
 declare let particlesJS: any;
@@ -31,8 +31,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.invokeParticles();
     this.form = this.fb.group({
-      email: [' ', [Validators.required, Validators.email]],
-      password: [' ', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
     });
   }
   get email() {
@@ -54,12 +54,10 @@ export class LoginComponent implements OnInit {
       .catch((e) => this.openDialog(e.code));
   }
   openDialog(error: DialogData) {
-    this.dialog.open(ELoginCompHanderComponent, {
-      data: {
-        error: error,
-      }
-    }
-  );
+    var message = this.switchErrorMessage(error);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = message;
+    this.dialog.open(ELoginCompHanderComponent, dialogConfig);
 };
 
 
@@ -72,5 +70,19 @@ export class LoginComponent implements OnInit {
   
   public invokeParticles(): void {
     particlesJS('particles-js', ParticlesConfig, function() {});
+  }
+
+  switchErrorMessage(e: DialogData){
+    let message: string = '';
+    switch(message){
+      case "auth/user-not-found":
+        return message = "Wrong email or password";
+        break
+      case "auth/too-many-requests":
+        return message = "Too many requests. Please wait and try again";
+        break
+      default:
+        return message = "There was an error while logging. Please try again";
+    }
   }
 }
