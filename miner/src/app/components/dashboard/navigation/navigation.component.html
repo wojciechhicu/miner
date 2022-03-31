@@ -40,7 +40,7 @@
             <a routerLinkActive="active" [skipLocationChange]="true" mat-list-item [routerLink]="['/dashboard', { outlets: {'content': ['configurations']}}]"
               ><mat-icon>settings_input_component</mat-icon> Configurations</a
             >
-            <a [skipLocationChange]="true" mat-list-item [routerLink]="['/dashboard', { outlets: {'content': ['labels']}}]"><mat-icon>label_important</mat-icon> Labels</a>
+            <a routerLinkActive="active" [skipLocationChange]="true" mat-list-item [routerLink]="['/dashboard', { outlets: {'content': ['labels']}}]"><mat-icon>label_important</mat-icon> Labels</a>
           </mat-nav-list>
         </mat-expansion-panel>
         <mat-expansion-panel>
