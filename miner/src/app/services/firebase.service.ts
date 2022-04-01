@@ -7,6 +7,7 @@ import { LoginData } from '../interfaces/login-data.interface';
 })
 export class FirebaseService {
   isLoggedIn = false;
+
   constructor(private firebaseAuth: Auth) {}
 
   login({ email, password }: LoginData) {
@@ -23,5 +24,9 @@ export class FirebaseService {
 
   logout() {
     return signOut(this.firebaseAuth);
+  }
+
+  getUserId(){
+    return this.firebaseAuth.currentUser?.uid;
   }
 }

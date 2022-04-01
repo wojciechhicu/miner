@@ -57,7 +57,8 @@
               "./src/theme.scss"
             ],
             "scripts": [
-              "node_modules/particles.js/particles.js"
+              "node_modules/particles.js/particles.js",
+              "./node_modules/crypto-js/crypto-js.js"
             ],
             "vendorChunk": true,
             "extractLicenses": false,

@@ -1,1 +1,38 @@
-<p>settings works!</p>
+<mat-card class="example-card">
+    <mat-card-subtitle>Settings for mining</mat-card-subtitle>
+    <mat-card-title>Mine in pixel currency</mat-card-title>
+    <mat-card-content>
+        <div class="example-container">
+            <form [formGroup]="options">
+
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Connect your wallet</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let wallet of wallets" [value]="wallet.value">
+                            {{wallet.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Connect to pool</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let pool of pools" [value]="pool.value">
+                            {{pool.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </form>
+        </div>
+    </mat-card-content>
+    <mat-divider inset></mat-divider>
+    <mat-card-actions>
+        <button mat-button>MINE</button>
+        <button disabled mat-button>CANCEL MINING</button>
+    </mat-card-actions>
+    <mat-card-footer>
+        <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
+    </mat-card-footer>
+</mat-card>
