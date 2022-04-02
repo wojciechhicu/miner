@@ -1,15 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../../../services/firebase.service';
+//import { FirebaseService } from '../../../services/firebase.service';
 import { HashService } from '../../../services/hash.service';
 import { DatabaseService } from '../../../services/database.service';
-
-export interface PeriodicElement {
-  walletID: string;
-  position: number;
-}
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, walletID: 'Hydrogen'},
-];
+import { PrivateKeysService } from '../../../services/private-keys.service'
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-wallets',
@@ -17,18 +11,26 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./wallets.component.scss']
 })
 export class WalletsComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'walletID'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['position', 'walletID', 'publicKey', 'privateKey'];
+  dataSource: any;
+  wallets: any;
 
-
-  constructor(private readonly authService: FirebaseService,private readonly hash: HashService, public db: DatabaseService) { }
-
-  userUID: any;
+  constructor(private readonly hash: HashService, public db: DatabaseService, private keys: PrivateKeysService) { }
+  walletArray = new Array();
 
   ngOnInit(): void {
-    this.userUID = this.authService.getUserId();
-    //this.userUID = this.hash.calulateWalletAdress(this.userUID);
-    this.db.readUserWallet(this.userUID)
+    this.getWallets();
+    console.log(this.keys.getWordsFromNumbers(this.keys.getBipArrayWords()));
   }
-
+  getWallets(): void {
+      this.db.readUserWallet().snapshotChanges().pipe(
+        map(changes => changes.map(c => ({
+          key: c.payload.key, ...c.payload.val()
+        })
+        ))
+      ).subscribe(data => {
+        this.wallets = data;
+        this.dataSource = this.wallets;
+      })
+  }
 }
