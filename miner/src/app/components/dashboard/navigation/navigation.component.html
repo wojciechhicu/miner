@@ -11,7 +11,7 @@
     <button mat-raised-button color="primary">
       <mat-icon>language</mat-icon>
     </button>
-    <button mat-raised-button color="primary" (click)="logout()">
+    <button mat-raised-button color="basic" (click)="logout()">
       <mat-icon>logout</mat-icon>
     </button>
   </mat-toolbar>
@@ -37,13 +37,13 @@
           </mat-expansion-panel-header>
           <mat-nav-list>
             <a routerLinkActive="active" [skipLocationChange]="true" mat-list-item [routerLink]="['/dashboard', { outlets: {'content': ['devices']}}]" ><mat-icon>change_history</mat-icon> Devices</a>
-            <a routerLinkActive="active" [skipLocationChange]="true" mat-list-item [routerLink]="['/dashboard', { outlets: {'content': ['configurations']}}]"
+            <a style="display:none" routerLinkActive="active" [skipLocationChange]="true" mat-list-item [routerLink]="['/dashboard', { outlets: {'content': ['configurations']}}]"
               ><mat-icon>settings_input_component</mat-icon> Configurations</a
             >
-            <a routerLinkActive="active" [skipLocationChange]="true" mat-list-item [routerLink]="['/dashboard', { outlets: {'content': ['labels']}}]"><mat-icon>label_important</mat-icon> Labels</a>
+            <a style="display:none" routerLinkActive="active" [skipLocationChange]="true" mat-list-item [routerLink]="['/dashboard', { outlets: {'content': ['labels']}}]"><mat-icon>label_important</mat-icon> Labels</a>
           </mat-nav-list>
         </mat-expansion-panel>
-        <mat-expansion-panel>
+        <mat-expansion-panel style="display:none">
           <mat-expansion-panel-header>
             <mat-panel-title> Pools </mat-panel-title>
             <mat-panel-description>
@@ -62,8 +62,8 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
           <mat-nav-list>
-            <a routerLinkActive="active" [skipLocationChange]="true" mat-list-item [routerLink]="['/dashboard', { outlets: {'content': ['accaunts']}}]"><mat-icon>account_balance</mat-icon> Accaunts</a>
-            <a routerLinkActive="active" [skipLocationChange]="true" mat-list-item [routerLink]="['/dashboard', { outlets: {'content': ['transactions']}}]"><mat-icon>paid</mat-icon> Transactions</a>
+            <a style="display:none" routerLinkActive="active" [skipLocationChange]="true" mat-list-item [routerLink]="['/dashboard', { outlets: {'content': ['accaunts']}}]"><mat-icon>account_balance</mat-icon> Accaunts</a>
+            <a style="display:none" routerLinkActive="active" [skipLocationChange]="true" mat-list-item [routerLink]="['/dashboard', { outlets: {'content': ['transactions']}}]"><mat-icon>paid</mat-icon> Transactions</a>
             <a routerLinkActive="active" [skipLocationChange]="true" mat-list-item [routerLink]="['/dashboard', { outlets: {'content': ['wallets']}}]"><mat-icon>wallet</mat-icon> Wallets</a>
           </mat-nav-list>
         </mat-expansion-panel>

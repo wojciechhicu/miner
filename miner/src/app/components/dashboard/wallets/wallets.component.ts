@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./wallets.component.scss']
 })
 export class WalletsComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'walletID', 'publicKey', 'privateKey'];
+  displayedColumns: string[] = ['position','privateKey', 'publicKey', 'key','edit' ];
   dataSource: any;
   wallets: any;
 
@@ -20,8 +20,14 @@ export class WalletsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getWallets();
-    console.log(this.keys.getWordsFromNumbers(this.keys.getBipArrayWords()));
+    //console.log(this.keys.getWordsFromNumbers(this.keys.getBipArrayWords()));
   }
+
+  createWallet(){
+    let wallet = this.keys.createWallet();
+    this.db.crateUserWallet(wallet);
+  }
+
   getWallets(): void {
       this.db.readUserWallet().snapshotChanges().pipe(
         map(changes => changes.map(c => ({
@@ -32,5 +38,8 @@ export class WalletsComponent implements OnInit {
         this.wallets = data;
         this.dataSource = this.wallets;
       })
+  }
+  editLabel(key: string){
+    alert(key);
   }
 }

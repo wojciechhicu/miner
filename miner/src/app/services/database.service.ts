@@ -19,4 +19,12 @@ export class DatabaseService {
   readUserWallet(): AngularFireList<walletList> {
     return this.walletRef;
   }
+
+  crateUserWallet(wallet: walletList){
+    return this.walletRef.push(wallet);
+  }
+
+  updateWalletLabel(key: string, value: any){
+    return this.walletRef.update(key,value)
+  }
 }

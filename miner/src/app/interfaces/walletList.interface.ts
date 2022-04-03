@@ -1,7 +1,7 @@
 export interface walletList {
-    key?: string | null;
+    key?:string,
     position: number;
-    walletID: string;
     publicKey: string;
     privateKey: string;
+    label?: string;
 }

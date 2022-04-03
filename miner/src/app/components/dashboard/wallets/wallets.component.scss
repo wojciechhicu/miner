@@ -1,3 +1,13 @@
 table {
     width: 100%;
   }
+  .truncate-cell {
+    max-width: 60px; /* feel free to include any other value */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .edit:hover{
+    background-color: #F5F5F5;
+    cursor: pointer;
+  }
