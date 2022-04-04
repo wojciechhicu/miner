@@ -31,6 +31,7 @@
     "firebase": "^9.6.10",
     "particles.js": "^2.0.0",
     "rxjs": "~6.6.0",
+    "svg-country-flags": "^1.2.10",
     "tslib": "^2.3.1",
     "zone.js": "~0.11.4"
   },

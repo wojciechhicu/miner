@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import { walletList } from '../../../interfaces/walletList.interface';
+import { DatabaseService } from '../../../services/database.service';
+import { map } from 'rxjs/operators';
+
 
 interface Pools {
-  value: string;
-  viewValue: string;
-}
-interface Wallets {
   value: string;
   viewValue: string;
 }
@@ -15,37 +15,25 @@ interface Wallets {
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
+  
   options: FormGroup;
   hideRequiredControl = new FormControl(false);
   floatLabelControl = new FormControl('auto');
-
-  wallets: Wallets[] = [
-    {value: 'Tomato', viewValue: 'Tomato'},
-    {value: 'Orange', viewValue: 'Orange'},
-    {value: 'DodgerBlue', viewValue: 'DodgerBlue'},
-    {value: 'MediumSeaGreen', viewValue: 'MediumSeaGreen'},
-    {value: 'Gray', viewValue: 'Gray'},
-    {value: 'SlateBlue', viewValue: 'SlateBlue'},
-    {value: 'Violet', viewValue: 'Violet'},
-    {value: 'LightGray', viewValue: 'LightGray'},
-  ];
+  walletList: any;
+  selectedWallet: string;
+  selectedPool: string;
 
   pools: Pools[] = [
-    {value: 'Tomato', viewValue: 'Tomato'},
-    {value: 'Orange', viewValue: 'Orange'},
-    {value: 'DodgerBlue', viewValue: 'DodgerBlue'},
-    {value: 'MediumSeaGreen', viewValue: 'MediumSeaGreen'},
-    {value: 'Gray', viewValue: 'Gray'},
-    {value: 'SlateBlue', viewValue: 'SlateBlue'},
-    {value: 'Violet', viewValue: 'Violet'},
-    {value: 'LightGray', viewValue: 'LightGray'},
+    {value: 'localhost:10001', viewValue: 'Tomato'},
+    {value: 'localhost:10002', viewValue: 'Orange'},
+    {value: 'localhost:10003', viewValue: 'DodgerBlue'},
+    {value: 'localhost:10004', viewValue: 'MediumSeaGreen'},
+    {value: 'localhost:10005', viewValue: 'Gray'},
+    {value: 'localhost:10006', viewValue: 'SlateBlue'},
+    {value: 'localhost:10007', viewValue: 'Violet'},
+    {value: 'localhost:10008', viewValue: 'LightGray'},
   ];
-
-
-  longText = `The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog
-  from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
-  originally bred for hunting.`;
-  constructor(fb: FormBuilder) { 
+  constructor(fb: FormBuilder, private db: DatabaseService) { 
     this.options = fb.group({
       hideRequired: this.hideRequiredControl,
       floatLabel: this.floatLabelControl,
@@ -53,6 +41,17 @@ export class SettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getWallets()
   }
 
+  getWallets():void{
+    this.db.readUserWallet().snapshotChanges().pipe(
+      map(changes => changes.map(c => ({
+        key: c.payload.key, ...c.payload.val()
+      })
+      ))
+    ).subscribe(data => {
+      this.walletList = data ;
+    })
 }
+  }

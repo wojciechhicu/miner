@@ -24,7 +24,7 @@ export class DatabaseService {
     return this.walletRef.push(wallet);
   }
 
-  updateWalletLabel(key: string, value: any){
-    return this.walletRef.update(key,value)
+  updateWalletLabel(key: string, value:string){
+    return this.walletRef.update(key,{label: value})
   }
 }

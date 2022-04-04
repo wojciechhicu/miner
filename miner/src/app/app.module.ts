@@ -34,6 +34,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 
+//add flags for select
+
+
+
 //imports components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -48,6 +52,7 @@ import { AccauntsComponent } from './components/dashboard/accaunts/accaunts.comp
 import { TransactionsComponent } from './components/dashboard/transactions/transactions.component';
 import { WalletsComponent } from './components/dashboard/wallets/wallets.component';
 import { SettingsComponent } from './components/dashboard/settings/settings.component';
+import { EditLabelHandlerComponent } from './handlers/editWallet/edit-label-handler/edit-label-handler.component';
 
 
 @NgModule({
@@ -65,15 +70,16 @@ import { SettingsComponent } from './components/dashboard/settings/settings.comp
     TransactionsComponent,
     WalletsComponent,
     SettingsComponent,
+    EditLabelHandlerComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    
+
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    
+
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),

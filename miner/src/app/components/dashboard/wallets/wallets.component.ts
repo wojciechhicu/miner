@@ -4,6 +4,8 @@ import { HashService } from '../../../services/hash.service';
 import { DatabaseService } from '../../../services/database.service';
 import { PrivateKeysService } from '../../../services/private-keys.service'
 import { map } from 'rxjs/operators';
+import {MatDialog} from '@angular/material/dialog';
+import { EditLabelHandlerComponent } from '../../../handlers/editWallet/edit-label-handler/edit-label-handler.component';
 
 @Component({
   selector: 'app-wallets',
@@ -15,12 +17,11 @@ export class WalletsComponent implements OnInit {
   dataSource: any;
   wallets: any;
 
-  constructor(private readonly hash: HashService, public db: DatabaseService, private keys: PrivateKeysService) { }
+  constructor(private readonly hash: HashService, public db: DatabaseService, private keys: PrivateKeysService,public dialog: MatDialog) { }
   walletArray = new Array();
 
   ngOnInit(): void {
     this.getWallets();
-    //console.log(this.keys.getWordsFromNumbers(this.keys.getBipArrayWords()));
   }
 
   createWallet(){
@@ -40,6 +41,10 @@ export class WalletsComponent implements OnInit {
       })
   }
   editLabel(key: string){
-    alert(key);
+    this.dialog.open(EditLabelHandlerComponent,{
+      data: {
+        key: key
+      }
+    })
   }
 }

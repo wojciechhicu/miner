@@ -64,7 +64,6 @@ export class PrivateKeysService {
     let privateKey = this.generateBigNumberKey();
     let publicKey = CryptoJS.SHA256(privateKey).toString();
     const data:walletList = {
-      position: 0,
       privateKey: privateKey,
       publicKey: publicKey
     };
