@@ -35,7 +35,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 //add flags for select
-
+import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
+import {HttpClientModule} from '@angular/common/http';
 
 
 //imports components
@@ -76,10 +77,10 @@ import { EditLabelHandlerComponent } from './handlers/editWallet/edit-label-hand
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-
+    MatSelectCountryModule.forRoot('en'),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-
+    HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),

@@ -15,22 +15,16 @@
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field appearance="fill">
-                    <mat-label>Connect to pool</mat-label>
-                    <mat-select [(value)]="selectedPool">
-                        <mat-option *ngFor="let pool of pools" [value]="pool.value">
-                            {{pool.viewValue}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
+                <mat-select-country appearance="fill" label="Connect to pool" [countries]="predefinedCountries"
+                (onCountrySelected)="onCountrySelected($event)">
+                </mat-select-country>
 
             </form>
-
         </div>
     </mat-card-content>
     <mat-divider inset></mat-divider>
     <mat-card-actions>
-        <div class="tmp">Mining with wallet adress: {{ selectedWallet}} and pool: {{selectedPool}} </div>
+        <div class="tmp">&#123;Mining with wallet adress: {{ selectedWallet}} and pool: {{selectedPool}} &#125;</div>
         <button mat-button>MINE</button>
         <button disabled mat-button>CANCEL MINING</button>
     </mat-card-actions>
