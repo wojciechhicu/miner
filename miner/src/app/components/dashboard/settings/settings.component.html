@@ -25,10 +25,13 @@
     <mat-divider inset></mat-divider>
     <mat-card-actions>
         <div class="tmp">&#123;Mining with wallet adress: {{ selectedWallet}} and pool: {{selectedPool}} &#125;</div>
-        <button mat-button>MINE</button>
+        <button mat-button (click)="workerTask()">MINE</button>
         <button disabled mat-button>CANCEL MINING</button>
     </mat-card-actions>
     <mat-card-footer>
         <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
     </mat-card-footer>
+
+
+    
 </mat-card>

@@ -6,6 +6,7 @@ import { PrivateKeysService } from '../../../services/private-keys.service'
 import { map } from 'rxjs/operators';
 import {MatDialog} from '@angular/material/dialog';
 import { EditLabelHandlerComponent } from '../../../handlers/editWallet/edit-label-handler/edit-label-handler.component';
+import * as SECP256 from 'secp256k1';
 
 @Component({
   selector: 'app-wallets',
@@ -46,5 +47,18 @@ export class WalletsComponent implements OnInit {
         key: key
       }
     })
+  }
+
+
+
+
+
+
+
+
+
+
+  createWallet2(){
+    console.log(navigator.hardwareConcurrency)
   }
 }

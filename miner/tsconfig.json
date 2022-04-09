@@ -15,8 +15,9 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2015",
+    "target": "es6",
     "module": "es2020",
+    "types": ["offscreencanvas"],
     "lib": [
       "es2018",
       "dom"
@@ -26,6 +27,6 @@
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": true,
   }
 }

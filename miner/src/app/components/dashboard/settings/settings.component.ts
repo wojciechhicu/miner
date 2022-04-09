@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { walletList } from '../../../interfaces/walletList.interface';
 import { DatabaseService } from '../../../services/database.service';
 import { map } from 'rxjs/operators';
-import {Country} from '../../../interfaces/countrySelectFlags.interface';
+import { Country } from '../../../interfaces/countrySelectFlags.interface';
+
 
 
 interface Pools {
@@ -22,7 +23,7 @@ interface Pools2 {
 
 export class SettingsComponent implements OnInit {
 
-  
+
   options: FormGroup;
   hideRequiredControl = new FormControl(false);
   floatLabelControl = new FormControl('auto');
@@ -64,7 +65,7 @@ export class SettingsComponent implements OnInit {
     },
   ]
 
-   predefinedCountries: Country[] = [
+  predefinedCountries: Country[] = [
     {
       name: 'Germany',
       alpha2Code: 'DE',
@@ -122,7 +123,7 @@ export class SettingsComponent implements OnInit {
       callingCode: '+52'
     },
   ];
-  constructor(fb: FormBuilder, private db: DatabaseService) { 
+  constructor(fb: FormBuilder, private db: DatabaseService) {
     this.options = fb.group({
       hideRequired: this.hideRequiredControl,
       floatLabel: this.floatLabelControl,
@@ -131,24 +132,41 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getWallets()
+    //this.gpuMultiplyMatrix();
   }
-  
+
   onCountrySelected($event: Country) {
-    for(var i =0; i < this.serverIP.length; i++){
-      if($event.numericCode == this.serverIP[i].numericCode){
+    for (var i = 0; i < this.serverIP.length; i++) {
+      if ($event.numericCode == this.serverIP[i].numericCode) {
         this.selectedPool = this.serverIP[i].serverIPAdress
       }
     }
   }
+  workerTask() {
 
-  getWallets():void{
+    if (typeof Worker !== 'undefined') {
+      // Create a new
+      const worker = new Worker(new URL('../../../.worker', import.meta.url));
+      worker.onmessage = ({ data }) => {
+        console.log(`page got message: ${data.block}`);
+      };
+      worker.postMessage('hello');
+    } else {
+      // Web Workers are not supported in this environment.
+      // You should add a fallback so that your program still executes correctly.
+    }
+  }
+  getWallets(): void {
     this.db.readUserWallet().snapshotChanges().pipe(
       map(changes => changes.map(c => ({
         key: c.payload.key, ...c.payload.val()
       })
       ))
     ).subscribe(data => {
-      this.walletList = data ;
+      this.walletList = data;
     })
-}
   }
+
+
+
+}
