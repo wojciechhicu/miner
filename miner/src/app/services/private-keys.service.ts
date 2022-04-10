@@ -3,6 +3,9 @@ import { Bip39 } from '../bip39/bip39'
 import * as CryptoJS from 'crypto-js';
 import { walletList } from '../interfaces/walletList.interface';
 
+const EC = require('elliptic').ec;
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +18,7 @@ export class PrivateKeysService {
     return Math.floor(Math.random() * Math.floor(2));
   }
   //step 2 to create private key : create 132 digit binary number
-  private generateBigNumberKey(): string {
+  public generateBigNumberKey(): string {
     let string: string = "";
     for (var r = 0; r < 132; r++) {
       string += this.getRandomDigit();
@@ -69,4 +72,17 @@ export class PrivateKeysService {
     };
     return data;
   }
+
+public keys(){
+  const ec = new EC('secp256k1');
+  const keys = ec.genKeyPair(this.generateBigNumberKey())
+  const publicKey = keys.getPublic('hex');
+  const privateKey = keys.getPrivate('hex');
+  const msg = "dassdfsdf"
+  const siganture = keys.sign(msg)
+
+  const derSign = siganture.toDER();
+  console.log(keys.verify(msg, derSign))
+}
+
 }
