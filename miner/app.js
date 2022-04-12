@@ -14,7 +14,7 @@ const {
       }
     })
     // Electron Build Path
-    appWindow.loadURL('81.171.31.232');
+    appWindow.loadURL('http://localhost:4200/');
     //disable menu in electron
     appWindow.setMenu(null);
     // Initialize the DevTools.

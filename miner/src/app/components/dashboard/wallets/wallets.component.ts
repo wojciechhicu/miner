@@ -22,11 +22,11 @@ export class WalletsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getWallets();
-    this.keys.keys();
+    
   }
 
   createWallet(){
-    let wallet = this.keys.createWallet();
+    let wallet = this.keys.createWalletKeysPair();
     this.db.crateUserWallet(wallet);
   }
 
@@ -47,18 +47,5 @@ export class WalletsComponent implements OnInit {
         key: key
       }
     })
-  }
-
-
-
-
-
-
-
-
-
-
-  createWallet2(){
-    
   }
 }

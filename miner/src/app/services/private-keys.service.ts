@@ -73,16 +73,18 @@ export class PrivateKeysService {
     return data;
   }
 
-public keys(){
+public createWalletKeysPair(){
   const ec = new EC('secp256k1');
-  const keys = ec.genKeyPair(this.generateBigNumberKey())
+  const keys = ec.genKeyPair()
   const publicKey = keys.getPublic('hex');
   const privateKey = keys.getPrivate('hex');
   const msg = "dassdfsdf"
   const siganture = keys.sign(msg)
-
-  const derSign = siganture.toDER();
-  console.log(keys.verify(msg, derSign))
+  const keysData: walletList = {
+    privateKey: privateKey,
+    publicKey: publicKey
+  }
+  return keysData;
 }
 
 }
