@@ -14,7 +14,7 @@ export class FirebaseService {
     return signInWithEmailAndPassword(this.firebaseAuth, email, password);
   }
 
-  loginWithGoogle() {
+  loginWithGoogle(){
     return signInWithPopup(this.firebaseAuth, new GoogleAuthProvider());
   }
 

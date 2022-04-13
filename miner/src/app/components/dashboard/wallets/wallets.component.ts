@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { HashService } from '../../../services/hash.service';
 import { DatabaseService } from '../../../services/database.service';
 import { PrivateKeysService } from '../../../services/private-keys.service'
+import { BlockChainService } from '../../../services/blockCHain/block-chain.service'
 import { map } from 'rxjs/operators';
 import {MatDialog} from '@angular/material/dialog';
 import { EditLabelHandlerComponent } from '../../../handlers/editWallet/edit-label-handler/edit-label-handler.component';
@@ -17,7 +18,7 @@ export class WalletsComponent implements OnInit {
   dataSource: any;
   wallets: any;
 
-  constructor(private readonly hash: HashService, public db: DatabaseService, private keys: PrivateKeysService,public dialog: MatDialog) { }
+  constructor(private readonly hash: HashService, public db: DatabaseService, private keys: PrivateKeysService,public dialog: MatDialog,public test: BlockChainService) { }
   walletArray = new Array();
 
   ngOnInit(): void {
