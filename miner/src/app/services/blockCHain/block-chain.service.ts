@@ -9,18 +9,19 @@ const ec = new EC('secp256k1');
 })
 export class BlockChainService {
   public chain;
-  private Data = new Array('12');
+  private Data:string[];
   constructor() {
-    this.chain = [new BlockService(Date.now().toString(), this.Data)];
+    //this.chain = [new BlockService(Date.now().toString(), this.Data)];
   }
 
   getLastBlock() {
     return this.chain[this.chain.length - 1];
   }
 
-  addBlock(block: BlockService) {
-    block.prevHash = this.getLastBlock().hash;
-    block.hash = block.getHash();
-    this.chain.push(block);
-  }
+  // addBlock(block: BlockService) {
+  //   block.prevHash = this.getLastBlock().hash;
+  //   block.hash = block.getHash();
+  //   this.chain.push(block);
+  // }
+
 }

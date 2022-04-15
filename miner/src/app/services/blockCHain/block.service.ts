@@ -1,20 +1,26 @@
 import { Injectable } from '@angular/core';
+import { Inject } from '@angular/core'
 import * as CRYPTO from 'crypto-js';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class BlockService {
 
   // init variables
-  public hash;
-  public prevHash:any;
+  public index: number;
+  public timestamp: string
+  public data:any;
+  public prevHash: string;
+  public hash: any
 
-  constructor(public timestamp:string = '', public data: string[]) {
+  constructor(timestamp:string,data:any) {
+    //this.index = index
     this.timestamp = timestamp;
     this.data = data;
     this.hash = this.getHash();
-    this.prevHash = '';
+    //this.prevHash = prevHash;
   }
 
   public getHash(){

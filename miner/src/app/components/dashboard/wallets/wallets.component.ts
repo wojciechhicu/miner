@@ -4,6 +4,7 @@ import { HashService } from '../../../services/hash.service';
 import { DatabaseService } from '../../../services/database.service';
 import { PrivateKeysService } from '../../../services/private-keys.service'
 import { BlockChainService } from '../../../services/blockCHain/block-chain.service'
+import { BlockService } from '../../../services/blockCHain//block.service';
 import { map } from 'rxjs/operators';
 import {MatDialog} from '@angular/material/dialog';
 import { EditLabelHandlerComponent } from '../../../handlers/editWallet/edit-label-handler/edit-label-handler.component';
@@ -18,12 +19,18 @@ export class WalletsComponent implements OnInit {
   dataSource: any;
   wallets: any;
 
-  constructor(private readonly hash: HashService, public db: DatabaseService, private keys: PrivateKeysService,public dialog: MatDialog,public test: BlockChainService) { }
+  constructor(private readonly hash: HashService,
+     public db: DatabaseService, 
+     private keys: PrivateKeysService,
+     public dialog: MatDialog,
+     public testBlockChain: BlockChainService,
+    // public testBlock: BlockService
+     ) { }
   walletArray = new Array();
 
   ngOnInit(): void {
     this.getWallets();
-    
+    this.testF()
   }
 
   createWallet(){
@@ -48,5 +55,14 @@ export class WalletsComponent implements OnInit {
         key: key
       }
     })
+  }
+
+
+
+  testF(){
+    const dupa = new BlockService(Date.now().toString(),['ssss'])
+    // const testChain = new this.testBlockChain.chain()
+    // testChain.addBlock(new BlockService(Date.now().toString(),['hello']))
+     console.log(dupa)
   }
 }
