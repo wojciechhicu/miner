@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { HashService } from '../../../services/hash.service';
 import { DatabaseService } from '../../../services/database.service';
 import { PrivateKeysService } from '../../../services/private-keys.service'
-import { BlockChainService } from '../../../services/blockCHain/block-chain.service'
-import { BlockService } from '../../../services/blockCHain//block.service';
-import { TransactionService } from '../../../services/blockCHain//transaction.service';
+import { BlockChainService as BlockChain} from '../../../services/blockCHain/block-chain.service'
+import { BlockService as Block} from '../../../services/blockCHain//block.service';
+import { TransactionService as Transaction} from '../../../services/blockCHain//transaction.service';
 import { map } from 'rxjs/operators';
 import {MatDialog} from '@angular/material/dialog';
 import { EditLabelHandlerComponent } from '../../../handlers/editWallet/edit-label-handler/edit-label-handler.component';
@@ -19,13 +19,14 @@ export class WalletsComponent implements OnInit {
   displayedColumns: string[] = ['position','privateKey', 'publicKey', 'key','edit' ];
   dataSource: any;
   wallets: any;
+  //tranzakcja: TransactionService
 
   constructor(private readonly hash: HashService,
      public db: DatabaseService, 
      private keys: PrivateKeysService,
      public dialog: MatDialog,
-     public testBlockChain: BlockChainService,
-     //public transaction: TransactionService
+    // public testBlockChain: BlockChainService,
+    // public transaction: TransactionService
     // public testBlock: BlockService
      ) { }
   walletArray = new Array();
@@ -62,9 +63,14 @@ export class WalletsComponent implements OnInit {
 
 
   testF(){
-    const dupa = new TransactionService('Ja','Do mnue', '10000')
+    
+    //const tranzakcja = new TransactionService('9f20a7bc21662cd641d82cb5819944dc35aee7be9d8ffb8fa682902728b07d15','04befe358811009b4d75123465d7de2727e8b31396039295dfd2e65f77a4e3b38c5695280bc6688f70064fb814a3d67f434bc18aa185666ecadd1a621036b21eba', '10.00022222')
+    //const blok = new BlockService(Date.now().toString(), tranzakcja[])
     // const testChain = new this.testBlockChain.chain()
     // testChain.addBlock(new BlockService(Date.now().toString(),['hello']))
-     console.log(dupa)
+    const chain = new BlockChain()
+    chain.addBlock(new Block(Date.now().toString(),[new Transaction('12','13','33.22')]))
+    const testBlock = new Block(Date.now().toString(),[new Transaction('12','13','22')])
+     console.log(chain)
   }
 }

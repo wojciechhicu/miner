@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BlockService } from './block.service';
+import { TransactionService } from './transaction.service'
 
 const EC = require('elliptic').ec;
 const ec = new EC('secp256k1');
@@ -9,19 +10,19 @@ const ec = new EC('secp256k1');
 })
 export class BlockChainService {
   public chain;
-  private Data:string[];
+  //private transaction: TransactionService[];
   constructor() {
-    //this.chain = [new BlockService(Date.now().toString(), this.Data)];
+    this.chain = [new BlockService(Date.now().toString(), [new TransactionService('12','13','22.69')])];
   }
 
   getLastBlock() {
     return this.chain[this.chain.length - 1];
   }
 
-  // addBlock(block: BlockService) {
-  //   block.prevHash = this.getLastBlock().hash;
-  //   block.hash = block.getHash();
-  //   this.chain.push(block);
-  // }
+  addBlock(block: BlockService) {
+    block.prevHash = this.getLastBlock().hash;
+    block.hash = block.getHash();
+    this.chain.push(block);
+  }
 
 }
