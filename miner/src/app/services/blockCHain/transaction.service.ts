@@ -42,4 +42,18 @@ export class TransactionService {
 
     this.signature = sig.toDER('hex');
   }
+
+  isValid(): boolean {
+    if (!this.signature || this.signature.length === 0) {
+      return false;
+    }
+
+    try {
+      let buffer = Buffer.from(this.fromAddress, 'hex');
+      const publicKey = EC.keyFromPublic(buffer, 'hex');
+      return publicKey.verify(this.calculateHash(), this.signature);
+    } catch (error) {
+      return false;
+    }
+  }
 }

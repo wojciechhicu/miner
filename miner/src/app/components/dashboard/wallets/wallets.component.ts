@@ -5,6 +5,7 @@ import { DatabaseService } from '../../../services/database.service';
 import { PrivateKeysService } from '../../../services/private-keys.service'
 import { BlockChainService } from '../../../services/blockCHain/block-chain.service'
 import { BlockService } from '../../../services/blockCHain//block.service';
+import { TransactionService } from '../../../services/blockCHain//transaction.service';
 import { map } from 'rxjs/operators';
 import {MatDialog} from '@angular/material/dialog';
 import { EditLabelHandlerComponent } from '../../../handlers/editWallet/edit-label-handler/edit-label-handler.component';
@@ -24,6 +25,7 @@ export class WalletsComponent implements OnInit {
      private keys: PrivateKeysService,
      public dialog: MatDialog,
      public testBlockChain: BlockChainService,
+     //public transaction: TransactionService
     // public testBlock: BlockService
      ) { }
   walletArray = new Array();
@@ -60,7 +62,7 @@ export class WalletsComponent implements OnInit {
 
 
   testF(){
-    const dupa = new BlockService(Date.now().toString(),['ssss'])
+    const dupa = new TransactionService('Ja','Do mnue', '10000')
     // const testChain = new this.testBlockChain.chain()
     // testChain.addBlock(new BlockService(Date.now().toString(),['hello']))
      console.log(dupa)
