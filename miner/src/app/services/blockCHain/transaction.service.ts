@@ -43,7 +43,7 @@ export class TransactionService {
     this.signature = sig.toDER('hex');
   }
 
-    isValid(): boolean {
+  isValid(): boolean {
     if (!this.signature || this.signature.length === 0) {
       return false;
     }

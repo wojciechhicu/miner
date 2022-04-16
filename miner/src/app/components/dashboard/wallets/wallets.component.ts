@@ -25,9 +25,6 @@ export class WalletsComponent implements OnInit {
      public db: DatabaseService, 
      private keys: PrivateKeysService,
      public dialog: MatDialog,
-    // public testBlockChain: BlockChainService,
-    // public transaction: TransactionService
-    // public testBlock: BlockService
      ) { }
   walletArray = new Array();
 
@@ -63,16 +60,8 @@ export class WalletsComponent implements OnInit {
 
 
   testF(){
-    
-    //const tranzakcja = new TransactionService('9f20a7bc21662cd641d82cb5819944dc35aee7be9d8ffb8fa682902728b07d15','04befe358811009b4d75123465d7de2727e8b31396039295dfd2e65f77a4e3b38c5695280bc6688f70064fb814a3d67f434bc18aa185666ecadd1a621036b21eba', '10.00022222')
-    //const blok = new BlockService(Date.now().toString(), tranzakcja[])
-    // const testChain = new this.testBlockChain.chain()
-    // testChain.addBlock(new BlockService(Date.now().toString(),['hello']))
     const chain = new BlockChain()
-    chain.addBlock(new Block(Date.now().toString(),[new Transaction('1','2','12.2')]))
-    chain.addBlock(new Block(Date.now().toString(),[new Transaction('1','2','12.2')]))
-    chain.addBlock(new Block(Date.now().toString(),[new Transaction('1','2','12.2')]))
-    //const testBlock = new Block(Date.now().toString(),[new Transaction('12','13','22')])
+    chain.mineTransaction('5bf8aa57fc5a6bc547decf1cc6db63f10deb55a3c6c5df497d631fb3d95e1abf')
      console.log(chain)
   }
 }
