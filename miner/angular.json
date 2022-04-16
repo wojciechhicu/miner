@@ -70,8 +70,7 @@
             "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "namedChunks": true,
-            "webWorkerTsConfig": "tsconfig.worker.json"
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -136,8 +135,7 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
-            "scripts": [],
-            "webWorkerTsConfig": "tsconfig.worker.json"
+            "scripts": []
           }
         },
         "e2e": {
