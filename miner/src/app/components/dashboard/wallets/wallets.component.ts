@@ -69,8 +69,10 @@ export class WalletsComponent implements OnInit {
     // const testChain = new this.testBlockChain.chain()
     // testChain.addBlock(new BlockService(Date.now().toString(),['hello']))
     const chain = new BlockChain()
-    chain.addBlock(new Block(Date.now().toString(),[new Transaction('12','13','33.22')]))
-    const testBlock = new Block(Date.now().toString(),[new Transaction('12','13','22')])
+    chain.addBlock(new Block(Date.now().toString(),[new Transaction('1','2','12.2')]))
+    chain.addBlock(new Block(Date.now().toString(),[new Transaction('1','2','12.2')]))
+    chain.addBlock(new Block(Date.now().toString(),[new Transaction('1','2','12.2')]))
+    //const testBlock = new Block(Date.now().toString(),[new Transaction('12','13','22')])
      console.log(chain)
   }
 }
