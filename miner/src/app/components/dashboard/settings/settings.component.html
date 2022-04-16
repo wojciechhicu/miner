@@ -1,1 +1,37 @@
-<p>settings works!</p>
+<mat-card class="example-card">
+    <mat-card-subtitle>Settings for mining</mat-card-subtitle>
+    <mat-card-title>Mine in pixel currency</mat-card-title>
+    <mat-card-content>
+        <div class="example-container">
+            <form [formGroup]="options">
+
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Connect your wallet</mat-label>
+                    <mat-select [(value)]="selectedWallet">
+                        <mat-option *ngFor="let wallet of walletList" [value]="wallet.publicKey">
+                            {{wallet.label}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-select-country appearance="fill" label="Connect to pool" [countries]="predefinedCountries"
+                (onCountrySelected)="onCountrySelected($event)">
+                </mat-select-country>
+
+            </form>
+        </div>
+    </mat-card-content>
+    <mat-divider inset></mat-divider>
+    <mat-card-actions>
+        <div class="tmp">&#123;Mining with wallet adress: {{ selectedWallet}} and pool: {{selectedPool}} &#125;</div>
+        <button mat-button>MINE</button>
+        <button disabled mat-button>CANCEL MINING</button>
+    </mat-card-actions>
+    <mat-card-footer>
+        <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
+    </mat-card-footer>
+
+
+    
+</mat-card>

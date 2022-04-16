@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Add label for waller adress </h1>
+<div mat-dialog-content>
+    <form class="example-form" [formGroup]="addLabelForm">
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Add label</mat-label>
+                        <input matInput           
+                        formControlName="label"
+                        required>
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+        <button mat-button mat-dialog-close (click)="addLabel()">Add label</button>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
+    
+</div>

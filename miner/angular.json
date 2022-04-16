@@ -50,14 +50,20 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/svg-country-flags/svg",
+                "output": "/assets/svg-country-flags/svg"
+              }
             ],
             "styles": [
               "src/styles.scss",
               "./src/theme.scss"
             ],
             "scripts": [
-              "node_modules/particles.js/particles.js"
+              "node_modules/particles.js/particles.js",
+              "./node_modules/crypto-js/crypto-js.js"
             ],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -84,8 +90,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
