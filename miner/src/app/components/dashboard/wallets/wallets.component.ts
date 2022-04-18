@@ -6,6 +6,7 @@ import { PrivateKeysService } from '../../../services/private-keys.service'
 import { BlockChainService as BlockChain} from '../../../services/blockCHain/block-chain.service'
 import { BlockService as Block} from '../../../services/blockCHain//block.service';
 import { TransactionService as Transaction} from '../../../services/blockCHain//transaction.service';
+import { WebSocketService} from '../../../services/web-socket.service'
 import { map } from 'rxjs/operators';
 import {MatDialog} from '@angular/material/dialog';
 import { EditLabelHandlerComponent } from '../../../handlers/editWallet/edit-label-handler/edit-label-handler.component';
@@ -19,7 +20,6 @@ export class WalletsComponent implements OnInit {
   displayedColumns: string[] = ['position','privateKey', 'publicKey', 'key','edit' ];
   dataSource: any;
   wallets: any;
-  //tranzakcja: TransactionService
 
   constructor(private readonly hash: HashService,
      public db: DatabaseService, 
@@ -30,7 +30,6 @@ export class WalletsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getWallets();
-    this.testF()
   }
 
   createWallet(){
@@ -55,13 +54,5 @@ export class WalletsComponent implements OnInit {
         key: key
       }
     })
-  }
-
-
-
-  testF(){
-    const chain = new BlockChain()
-    chain.mineTransaction('5bf8aa57fc5a6bc547decf1cc6db63f10deb55a3c6c5df497d631fb3d95e1abf')
-     console.log(chain)
   }
 }

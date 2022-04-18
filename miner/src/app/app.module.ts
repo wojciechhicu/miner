@@ -54,6 +54,7 @@ import { TransactionsComponent } from './components/dashboard/transactions/trans
 import { WalletsComponent } from './components/dashboard/wallets/wallets.component';
 import { SettingsComponent } from './components/dashboard/settings/settings.component';
 import { EditLabelHandlerComponent } from './handlers/editWallet/edit-label-handler/edit-label-handler.component';
+import { MiningComponent } from './components/dashboard/mining/mining.component';
 
 
 @NgModule({
@@ -72,6 +73,7 @@ import { EditLabelHandlerComponent } from './handlers/editWallet/edit-label-hand
     WalletsComponent,
     SettingsComponent,
     EditLabelHandlerComponent,
+    MiningComponent,
   ],
   imports: [
     BrowserModule,

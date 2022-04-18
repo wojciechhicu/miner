@@ -11,6 +11,7 @@ import { AccauntsComponent } from './components/dashboard/accaunts/accaunts.comp
 import { TransactionsComponent } from './components/dashboard/transactions/transactions.component';
 import { WalletsComponent } from './components/dashboard/wallets/wallets.component';
 import { SettingsComponent } from './components/dashboard/settings/settings.component';
+import { MiningComponent } from './components/dashboard/mining/mining.component';
 
 import {
   AuthGuard,
@@ -86,6 +87,12 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         path: 'settings',
         component: SettingsComponent,
+        outlet: 'content'
+      },
+      {
+        canActivate: [AuthGuard],
+        path: 'mining',
+        component: MiningComponent,
         outlet: 'content'
       }
     ]
